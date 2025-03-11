@@ -1,0 +1,49 @@
+// C++ code
+//
+#define TRIG 13
+#define ECHO 12 
+int red = 7;
+int green = 8;
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(red, OUTPUT); //pin 설정
+  pinMode(green, OUTPUT);
+  pinMode(TRIG, OUTPUT);
+  pinMode(ECHO, INPUT);
+}
+
+void loop()
+{
+  //초음파 거리를 재기위한 변수 설정
+  long duration, distance;
+  //켜저있는 경우를 위해서 초기화
+  digitalWrite(TRIG, LOW);
+  delayMicroseconds(2); // delye(0.002);
+  digitalWrite(TRIG, HIGH);
+  delayMicroseconds(10); // delye(0.01);
+  digitalWrite(TRIG, LOW);
+  
+  duration = pulseIn(ECHO,HIGH); //읽어오는 곳
+  distance = duration/58.2; //초음파의 거리 계산
+  
+  //만약 초음파의 거리가 100이상이면 빨간불
+  if(distance >= 100){
+  	digitalWrite(red,HIGH);
+    digitalWrite(green,LOW);
+  }
+  //아닐경우 초록불
+  else{
+  	digitalWrite(green,HIGH);
+    digitalWrite(red,LOW);
+  }
+  //초음파의 거리를 출력함
+  Serial.println(duration);
+  Serial.print("\nDIstance : ");
+  Serial.print(distance);
+  Serial.println(" Cm");
+  
+  
+  delay(1000); //1000 millisecond(s)
+  //
+}
