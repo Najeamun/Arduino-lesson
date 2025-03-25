@@ -1,0 +1,46 @@
+//3주차
+//초음파 센서의 길이를 lcd판에 출력하는 코드
+
+
+#include <Wire.h>				        //I2C 통신을 위한 기본 라이브러리
+#include <LiquidCrystal_I2C.h>  // I2C LCD 라이브러리
+#define TRIG 13
+#define ECHO 12
+
+LiquidCrystal_I2C lcd(0x27,16,2);
+
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(TRIG, OUTPUT);
+  pinMode(ECHO, INPUT);
+  lcd.init();				      //I2C LCD 초기화
+  lcd.backlight();			  //백라이트 켜기
+  lcd.print("LCD init");  //켜진것을 체크하기 위해 판에 LCD init 출력
+  delay (2000);
+  lcd.clear();				    //LCD 값 초기화
+}
+
+
+void loop()
+{
+  
+  long duration, distance;
+  digitalWrite(TRIG, LOW);
+  delayMicroseconds(2);
+  digitalWrite(TRIG, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(TRIG, LOW);
+  
+
+  duration = pulseIn(ECHO, HIGH);
+  distance = duration * 17 / 1000; //거리를 나타내는 수식  
+
+  lcd.setCursor(0,0);
+  lcd.print(distance);
+  lcd.print(" Cm");
+
+  delay(1000);
+  lcd.clear();
+
+}
