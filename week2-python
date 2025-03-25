@@ -1,3 +1,5 @@
+//2주차
+//InfluxDB에 연결하는 코드, 시간에 따라 미세먼지량이 얼마나 변화하는지 체크
 import serial
 from influxdb_client import InfluxDBClient
 import time
