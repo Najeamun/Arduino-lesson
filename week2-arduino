@@ -1,3 +1,5 @@
+//2주차 
+//미세먼지를 감지하는 센서를 이용해 먼지를 체크해보고 출력하는 코드 
 int Vo = A0;
 int V_led = 12;
 
@@ -18,7 +20,7 @@ void loop(){
   digitalWrite(V_led,HIGH);
   delayMicroseconds(9600);
 
-  Voltage = Vo_value*5.0 / 1023.0;
+  Voltage = Vo_value*5.0 / 1023.0;      //수식
   dustDensity = (Voltage - 0.5)/0.005;
 
   Serial.print("dust=");
