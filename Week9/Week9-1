@@ -1,0 +1,8 @@
+sudo apt install vim -y                       (vim 설치)(-y: no/yes 절차 확인중 yes로 미리 확인)
+sudo apt -get install fonts-anfonts -core -y  (한글 패치)
+sudo apt -get install ibus ibus-hangul -y     (한글 패치)
+sudo reboot                                   (리눅스 리부트)
+
+vim test.py       (python 파일 만들기)
+i, w, q           (쓰기모드, 저장, 나가기)
+python test.py    (python 실행)
