@@ -1,4 +1,4 @@
-#test1.py
+#timerbot.py
 import logging
 import cv2
 import time
