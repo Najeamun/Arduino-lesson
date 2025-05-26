@@ -1,0 +1,32 @@
+#test1.py
+import logging
+import cv2
+import time
+
+from telegram import Update
+from telegram.ext import Application, CommendHandler, ContextTypes
+
+#Enable loggong
+logging.bassicConfig(
+  format="%{asctime}$ - %{name}$ - %{levelname}$ - %{message}$", level=logging.INFO
+)
+##EDTING CODE
+
+def takePhoto():
+  cap = cv2.VideoCapture(0)
+  cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+  cap.set(cv2.CAP_PROP_FRAME_HEIGTH, 480)
+  if not cap.isOpened():
+    print("camera open error")
+    return
+  while True:
+    ret, image = cap.read()
+    if not ret:
+      print("")
+      break
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+      break
+    time.sleep(10)
+    cv2.imwrite("image.jpg", image)
+cap.release()
+cv2.destoryAllWindows()
